@@ -1,0 +1,13 @@
+.login {
+    width: 100%;
+    height: 100%;
+    background: #6c938a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm {
+    width: 80%;
+    height: 300px;
+}
