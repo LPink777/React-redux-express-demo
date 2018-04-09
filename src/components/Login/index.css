@@ -1,13 +1,15 @@
 .login {
     width: 100%;
     height: 100%;
-    background: #6c938a;
+    background: #81b4a8;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .loginForm {
-    width: 80%;
+    width: 70%;
     height: 300px;
+    background: white;
+    padding: 30px;
 }
