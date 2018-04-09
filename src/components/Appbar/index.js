@@ -58,7 +58,7 @@ class Appbar extends Component {
                     onToggle={this.handleChange}
                     labelPosition="right"/>
                 <AppBars
-                    title="ナミヤ雑貨店の奇蹟 !"
+                    title="ナミヤ雑貨店の奇蹟"
                     iconElementLeft={<IconButton> <NavigationList/> </IconButton>}
                     titleStyle={{textAlign:'center',fontSize:'20px'}}
                     iconElementRight={this.state.logged
