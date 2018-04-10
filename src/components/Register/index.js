@@ -7,10 +7,10 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
 
-const Login = () => (
-    <div className='login'>
-        <div className="loginForm">
-            <div>please login ...</div>
+const Register = () => (
+    <div className='register'>
+        <div className="registerForm">
+            <div>please register ...</div>
             <TextField
                 fullWidth
                 hintText="userName Field"
@@ -21,10 +21,9 @@ const Login = () => (
                 hintText="Password Field"
                 floatingLabelText="Password"
                 type="password"/>
-            <RaisedButton label="Login" fullWidth primary style={{marginTop:'20px'}} containerElement={<Link to='/' />}/>
-            <RaisedButton label="Register" fullWidth primary style={{marginTop:'20px'}} containerElement={<Link to='/register' />}/>
+            <RaisedButton label="Register" fullWidth primary style={{marginTop:'30px'}} containerElement={<Link to="/login" />}/>
         </div>
     </div>
 );
 
-export default Login;
+export default Register;
