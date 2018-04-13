@@ -5,8 +5,9 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Snackbar from 'material-ui/Snackbar';
 import { Link } from 'react-router-dom';
-import { register } from '../../axios/register';
+import { register } from '../../axios/userLogin';
 
 class Register extends Component {
     constructor(props){
@@ -14,6 +15,8 @@ class Register extends Component {
         this.state = {
             username:'',
             password:'',
+            open: false,
+            message: '',
         }
         this.registerClick = this.registerClick.bind(this);
     }
@@ -32,13 +35,29 @@ class Register extends Component {
 
     registerClick(){
         const { username, password } = this.state;
-        if (!username || !password) {
-            alert('请输入正确的信息')
+        if (username.length < 4 || password.length < 6) {
+            this.setState({
+                open: true,
+                message: '请输入正确的格式!'
+            })
         }else{
             register({ username, password }).then(res => {
                 if (res.code === 1) {
-                    alert(res.message)
-                    window.location.href = '/login';
+                    this.setState({
+                        open: true,
+                        message: res.message,
+                    },()=>{
+                        setTimeout(() => {
+                            window.location.href = '/login';
+                        }, 1000);
+                    });
+                }else{
+                    this.setState({
+                        open: true,
+                        message: res.message,
+                        username:'',
+                        password:'',
+                    });
                 }
             })
         }
@@ -55,6 +74,7 @@ class Register extends Component {
                         floatingLabelText="userName"
                         type="userName"
                         onChange={this.useranmeChange}
+                        value={this.state.username}
                     />
                     <TextField
                         fullWidth
@@ -62,6 +82,7 @@ class Register extends Component {
                         floatingLabelText="Password"
                         type="password"
                         onChange={this.passwordChange}
+                        value={this.state.password}
                     />
                     <RaisedButton
                         label="Register"
@@ -71,6 +92,12 @@ class Register extends Component {
                             marginTop: '30px'
                         }}
                         onClick={this.registerClick}
+                    />
+                    <Snackbar
+                        open={this.state.open}
+                        message={this.state.message}
+                        autoHideDuration={1000}
+                        style={{textAlign:'center',width:'45%'}}
                     />
                 </div>
             </div>

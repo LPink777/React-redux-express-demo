@@ -129,7 +129,7 @@ module.exports = {
                     loader: 'babel-loader?cacheDirectory',
                     options: {
                         presets: [
-                            'stage-0', 'es2015', 'react'
+                            'stage-3', 'es2015', 'react'
                         ],
                         plugins: ['transform-runtime',"transform-class-properties"]
                     }
