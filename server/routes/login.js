@@ -12,7 +12,6 @@ router.get('/', function (req, res) {
         if (err) {
             res.status(500).send('databases error').end()
         }else{
-            console.log(data)
             if (data.length == 0) {
                 res.status(200).send({code:0,message:'没有此用户名!'}).end()
             }else{
@@ -24,9 +23,6 @@ router.get('/', function (req, res) {
             }
         }
     })
-
-
-    
 });
 
 module.exports = router;
