@@ -3,7 +3,7 @@ const router = express.Router();
 const mysql = require('mysql');
 const common = require('../lib/common');
 
-var db = mysql.createPool({host: 'localhost', user: 'root', password: 'root', database: 'store'})
+const db = mysql.createPool({host: 'localhost', user: 'root', password: 'root', database: 'store'})
 
 router.get('/', function (req, res) {
     var username = req.query.username;
