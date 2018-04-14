@@ -21,9 +21,9 @@ export function post(url,data) {
                 'Content-Type': 'application/x-www-form-urlencoded',
             }
         }).then( res => {
-            resolve(res.data)
+            resolve(res.data);
         } ).catch( err => {
-            reject(err)
+            reject(err);
         } )
     })
 }

@@ -35,6 +35,7 @@ class Login extends Component{
 
     loginClick(){
         const { username, password } = this.state;
+        const { loginClick } = this.props;
         login({ username, password }).then(res => {
             if (res.code === 1) {
                 this.setState({
@@ -42,8 +43,9 @@ class Login extends Component{
                     message: res.message,
                 },()=>{
                     setTimeout(() => {
-                        window.location.href = '/';
-                    }, 1000);
+                        loginClick()
+                        this.props.history.push('/')
+                    }, 2000);
                 });
             }else{
                 this.setState({
@@ -57,6 +59,7 @@ class Login extends Component{
     }
 
     render(){
+        const { loginState } = this.props;
         return (
             <div className='login'>
                 <div className="loginForm">
@@ -78,7 +81,7 @@ class Login extends Component{
                         value={this.state.password}
                         />
                     <RaisedButton
-                        label="Login"
+                        label={ loginState === 0 ? 'Login' : 'Logging ...' }
                         fullWidth
                         primary
                         style={{marginTop:'20px'}}

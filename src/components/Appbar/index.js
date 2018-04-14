@@ -11,7 +11,7 @@ import NavigationList from 'material-ui/svg-icons/Action/list';
 
 import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class IsLogin extends Component {
     static muiName = 'FlatButton';
     render() {
         return (<FlatButton {...this.props} label="Login" containerElement={<Link to="/login" />}/>);
@@ -30,40 +30,37 @@ const Logged = (props) => (
         horizontal: 'right',
         vertical: 'top'
     }}>
-        <MenuItem primaryText="Refresh"/>
-        <MenuItem primaryText="Help"/>
         <MenuItem primaryText="Sign out"/>
     </IconMenu>
 );
 
 class Appbar extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            logged:true
+            logged:false,
         }
-        this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange = (event, logged) => {
-        this.setState({logged: logged});
-    };
+    componentDidMount() {
+        const { loginState } = this.props;
+        if (loginState === 1) {
+            this.setState({
+                logged: !this.state.logged,
+            });
+        }
+    }
 
     render() {
         return (
             <div>
-                <Toggle
-                    label="Logged"
-                    defaultToggled={true}
-                    onToggle={this.handleChange}
-                    labelPosition="right"/>
                 <AppBars
                     title="ナミヤ雑貨店の奇蹟"
                     iconElementLeft={<IconButton> <NavigationList/> </IconButton>}
                     titleStyle={{textAlign:'center',fontSize:'20px'}}
                     iconElementRight={this.state.logged
                     ? <Logged/>
-                    : <Login/>}/>
+                    : <IsLogin/>}/>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import { get, post } from './index';
-const SERVER_IP = 'http://localhost:3000';
+import { SERVER_IP } from '../constants/setting'
+
 const registerApi = `${SERVER_IP}/register`;
 const loginApi = `${SERVER_IP}/login`;
 

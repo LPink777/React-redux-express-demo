@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Home from '../components/Home/index';
-import Login from '../components/Login/index';
-import Register from '../components/Register/index';
-import '../assets/style/index.css';
+import Home from '@/components/Home/index';
+
+import asyncComponent from '@/utils/asyncComponent';
+
+const Login = asyncComponent(() => require("@/containers/loginContainer/index"));
+const Register = asyncComponent(() => require("@/components/Register/index"));
 
 class App extends Component {
     render() {
@@ -12,9 +14,11 @@ class App extends Component {
             <Router>
                 <MuiThemeProvider>
                     <div className="mainbody">
-                        <Route path="/" exact component={Home}/>
-                        <Route path="/login" component={Login}/>
-                        <Route path="/register" component={Register}/>
+                        <Switch>
+                            <Route path="/" exact component={Home}/>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/register" component={Register}/>
+                        </Switch>
                     </div>
                 </MuiThemeProvider>
             </Router>

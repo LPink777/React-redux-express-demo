@@ -94,7 +94,7 @@ module.exports = {
             ".js", ".json", "css"
         ],
         alias: { //别名
-
+            '@': path.join(__dirname, './src'),
         },
         modules: [path.resolve(__dirname, 'node_modules')]
     },

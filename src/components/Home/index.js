@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Appbar from '../Appbar/index';
+import Appbar from '@/containers/AppBar';
 
 class Home extends Component {
+    constructorp(){
+    }
+
     render() {
         return (
             <div>
