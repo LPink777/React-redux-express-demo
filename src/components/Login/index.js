@@ -42,8 +42,8 @@ class Login extends Component{
                     open: true,
                     message: res.message,
                 },()=>{
+                    loginClick()
                     setTimeout(() => {
-                        loginClick()
                         this.props.history.push('/')
                     }, 2000);
                 });

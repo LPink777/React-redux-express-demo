@@ -1,16 +1,9 @@
 import * as Actions from './loginType';
 
-export function loginAction1(){
+export function loginAction(){
     return { type: Actions.LOGIN }
 }
 
-export function loginAction2(){
-    return { type: Actions.LOGING }
-}
-
-export function loginAction(){
-    return function (dispatch) {
-        dispatch(loginAction2())
-        dispatch(loginAction1())
-    }
+export function logoutAction(){
+    return { type: Actions.LOGOUT }
 }

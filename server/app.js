@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mysql = require('mysql');
 const multer = require('multer');
 const multerObj = multer({dest: './public/upload'});
+const session = require('express-session');
 
 var app = express();
 
@@ -15,21 +16,33 @@ var registerRouter = require('./routes/register');
 var loginRouter = require('./routes/login');
 
 app.all('*', function (req, res, next) {
-    res.header("Access-Control-Allow-Credentials", true)
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "X-Requested-With")
+    res.header("Access-Control-Allow-Origin", "http://localhost:8080")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS")
+    res.header("Access-Control-Allow-Credentials", true)
     res.header("X-Powered-By", ' 3.2.1')
     res.header("Content-Type", "application/json;charset=utf-8")
     next()
 })
+
+const identityKey = 'skey';
+
+app.use(session({
+    name: identityKey,
+    secret: 'chyingp',  // 用来对session id相关的cookie进行签名
+    saveUninitialized: false,  // 是否自动保存未初始化的会话，建议false
+    resave: false,  // 是否每次都重新保存会话，建议false
+    cookie: {
+        maxAge: 30 * 1000  // 有效期，单位是毫秒
+    }
+}));
 
 // view engine setup
 app.engine('.html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(multerObj.any())
 app.use(logger('dev'));
 app.use(express.json());

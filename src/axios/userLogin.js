@@ -9,5 +9,5 @@ export function register(data) {
 }
 
 export function login(data) {
-    return get(loginApi,data) 
+    return post(loginApi,data) 
 }

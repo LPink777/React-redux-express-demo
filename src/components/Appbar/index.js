@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 
 import AppBars from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
+import IconButton from 'material-ui/IconButton';
 import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationList from 'material-ui/svg-icons/Action/list';
+import Logged from "../Logged";
 
 import { Link } from 'react-router-dom';
 
@@ -18,22 +17,6 @@ class IsLogin extends Component {
     }
 }
 
-const Logged = (props) => (
-    <IconMenu
-        {...props}
-        iconButtonElement={<IconButton> <MoreVertIcon/> </IconButton>}
-        targetOrigin={{
-            horizontal: 'right',
-            vertical: 'top'
-        }}
-        anchorOrigin={{
-        horizontal: 'right',
-        vertical: 'top'
-    }}>
-        <MenuItem primaryText="Sign out"/>
-    </IconMenu>
-);
-
 class Appbar extends Component {
     constructor(props){
         super(props);
@@ -42,9 +25,21 @@ class Appbar extends Component {
         }
     }
 
+    logoutClick = () => {
+        this.props.logOutClick();
+    }
+
     componentDidMount() {
         const { loginState } = this.props;
         if (loginState === 1) {
+            this.setState({
+                logged: !this.state.logged,
+            });
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loginState === 0) {
             this.setState({
                 logged: !this.state.logged,
             });
@@ -59,7 +54,7 @@ class Appbar extends Component {
                     iconElementLeft={<IconButton> <NavigationList/> </IconButton>}
                     titleStyle={{textAlign:'center',fontSize:'20px'}}
                     iconElementRight={this.state.logged
-                    ? <Logged/>
+                    ? <Logged logOutClick={this.logoutClick} />
                     : <IsLogin/>}/>
             </div>
         );
