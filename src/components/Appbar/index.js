@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import { withRouter } from "react-router-dom";
 import AppBars from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import IconButton from 'material-ui/IconButton';
@@ -7,7 +7,7 @@ import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import NavigationList from 'material-ui/svg-icons/Action/list';
 import Logged from "../Logged";
-
+import { logout } from '../../axios/userLogin';
 import { Link } from 'react-router-dom';
 
 class IsLogin extends Component {
@@ -17,7 +17,7 @@ class IsLogin extends Component {
     }
 }
 
-class Appbar extends Component {
+class Appbar1 extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -27,13 +27,21 @@ class Appbar extends Component {
 
     logoutClick = () => {
         this.props.logOutClick();
+        logout();
     }
 
     componentDidMount() {
-        const { loginState } = this.props;
-        if (loginState === 1) {
+        if (!document.cookie) {
             this.setState({
-                logged: !this.state.logged,
+                logged: false,
+            });
+        }else{
+            const { loginState } = this.props;
+            if (loginState === 0) {
+                this.props.loginClick();
+            }
+            this.setState({
+                logged: true,
             });
         }
     }
@@ -41,7 +49,7 @@ class Appbar extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.loginState === 0) {
             this.setState({
-                logged: !this.state.logged,
+                logged: false,
             });
         }
     }
@@ -60,5 +68,7 @@ class Appbar extends Component {
         );
     }
 }
+
+const Appbar =  withRouter(Appbar1)
 
 export default Appbar;

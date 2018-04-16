@@ -17,12 +17,11 @@ router.post('/', function (req, res) {
             }else{
                 if (data[0].password == password) {
                     res.cookie('user', username, {
-                        maxAge: 3000000,
-                        httpOnly: true,
+                        maxAge: 60000,
                         path: '/',
-                        // secure:true //设置该选项，只有https网站才可以输出该cookie
                         domain: 'localhost',
-                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
+                        // httpOnly: true,
+                        // secure:true //设置该选项，只有https网站才可以输出该cookie
                     })
                     res.status(200).send({code:1,message:'登陆成功!'}).end()
                 }else{

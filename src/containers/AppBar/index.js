@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Appbar from '../../components/Appbar';
-import { logoutAction } from "../../actions/loginAction/index";
+import { loginAction,logoutAction } from "../../actions/loginAction/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        loginClick:bindActionCreators(loginAction,dispatch),
         logOutClick: bindActionCreators(logoutAction,dispatch)
     }
 }

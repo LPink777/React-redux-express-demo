@@ -3,7 +3,6 @@ import 'es6-promise';
 import qs from 'query-string';
 
 axios.defaults.withCredentials = true;
-console.log(axios.defaults)
 
 export function get(url,params){
     return new Promise((resolve,reject)=>{
