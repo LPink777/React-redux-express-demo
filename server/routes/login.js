@@ -16,7 +16,7 @@ router.post('/', function (req, res) {
                 res.status(200).send({code:0,message:'没有此用户名!'}).end()
             }else{
                 if (data[0].password == password) {
-                    res.cookie('user', username, {
+                    res.cookie('userId', data[0].id, {
                         maxAge: 60000,
                         path: '/',
                         domain: 'localhost',
