@@ -8,6 +8,7 @@ import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
 import { login } from '../../axios/userLogin';
 import Snackbar from 'material-ui/Snackbar';
+import queryString from 'query-string';
 
 class Login extends Component{
     constructor(props){
@@ -42,7 +43,8 @@ class Login extends Component{
                     open: true,
                     message: res.message,
                 },()=>{
-                    loginClick()
+                    const userCookie = queryString.parse(document.cookie);
+                    loginClick(userCookie);
                     setTimeout(() => {
                         this.props.history.push('/')
                     }, 2000);

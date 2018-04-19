@@ -24,7 +24,6 @@ class Appbar1 extends Component {
     constructor(props){
         super(props);
         this.state = {
-            logged:false,
             open: false,
         }
     }
@@ -36,32 +35,17 @@ class Appbar1 extends Component {
 
     componentDidMount() {
         if (!document.cookie) {
-            this.setState({
-                logged: false,
-            });
+            this.props.logOutClick();
         }else{
             const { loginState } = this.props;
-            console.log(this.props)
             const userCookie = queryString.parse(document.cookie);
             if (loginState === 0) {
-                this.props.loginClick();
-                this.props.setUserId(userCookie)
+                this.props.loginClick(userCookie);        
             }
-            this.setState({
-                logged: true,
-            });
         }
     }
 
     handleToggle = () => this.setState({open: !this.state.open});
-
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.loginState === 0) {
-            this.setState({
-                logged: false,
-            });
-        }
-    }
 
     render() {
         return (
@@ -70,7 +54,7 @@ class Appbar1 extends Component {
                     title="ナミヤ雑貨店の奇蹟"
                     iconElementLeft={<IconButton onClick={this.handleToggle}><NavigationList/></IconButton>}
                     titleStyle={{textAlign:'center',fontSize:'20px'}}
-                    iconElementRight={this.state.logged
+                    iconElementRight={this.props.loginState === 1
                     ? <Logged logOutClick={this.logoutClick} />
                     : <IsLogin/>}/>
                 <Drawer

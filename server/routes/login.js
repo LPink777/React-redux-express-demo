@@ -17,7 +17,7 @@ router.post('/', function (req, res) {
             }else{
                 if (data[0].password == password) {
                     res.cookie('userId', data[0].id, {
-                        maxAge: 60000,
+                        maxAge: 1000*60*30,
                         path: '/',
                         domain: 'localhost',
                         // httpOnly: true,
