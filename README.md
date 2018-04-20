@@ -1,4 +1,4 @@
-## react + redux + webpack + material 搭建的一个杂货店
+## ナミヤ雑貨店の奇蹟
 
 > 启动项目
 * git clone https://github.com/LPink777/Grocery-store.git
