@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import { routerReducer } from 'react-router-redux';
 import loginReducer from './loginReducer/index';
 // import testReducer from "./testReducer/index";

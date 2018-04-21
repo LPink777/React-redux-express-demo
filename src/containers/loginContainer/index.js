@@ -4,8 +4,9 @@ import { loginAction, logingAction } from '../../actions/loginAction/index';
 import Login from '../../components/Login';
 
 const mapStateToProps = (state) => {
+    const data = state.toJS();
     return {
-        loginState: state.loginReducer.loginState,
+        loginState: data.loginReducer.loginState,
     }
 }
 

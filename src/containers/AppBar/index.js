@@ -4,8 +4,9 @@ import Appbar from '../../components/Appbar';
 import { loginAction,logoutAction } from "../../actions/loginAction/index";
 
 const mapStateToProps = (state) => {
+    const data = state.toJS();
     return {
-        loginState: state.loginReducer.loginState,
+        loginState: data.loginReducer.loginState,
     }
 }
 

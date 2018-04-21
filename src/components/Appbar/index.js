@@ -34,9 +34,7 @@ class Appbar1 extends Component {
     }
 
     componentDidMount() {
-        if (!document.cookie) {
-            this.props.logOutClick();
-        }else{
+        if (document.cookie) {
             const { loginState } = this.props;
             const userCookie = queryString.parse(document.cookie);
             if (loginState === 0) {

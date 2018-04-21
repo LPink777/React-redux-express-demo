@@ -1,5 +1,5 @@
 import { createAction } from "redux-actions";
-import * as Actions from './loginType';
+import * as Actions from './type';
 
 export const loginAction = createAction(Actions.LOGIN)
 
