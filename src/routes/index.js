@@ -7,6 +7,7 @@ import asyncComponent from '@/utils/asyncComponent';
 
 const Login = asyncComponent(() => require("@/containers/loginContainer/index"));
 const Register = asyncComponent(() => require("@/components/Register/index"));
+const UserInfo = asyncComponent(() => require("@/components/UserInfo/index"));
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
                             <Route path="/" exact component={Home}/>
                             <Route path="/login" component={Login}/>
                             <Route path="/register" component={Register}/>
+                            <Route path="/userInfo" component={UserInfo}/>
                         </Switch>
                     </div>
                 </MuiThemeProvider>

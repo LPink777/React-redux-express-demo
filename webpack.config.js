@@ -3,7 +3,8 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const copyWebpackPlugin = require('copy-webpack-plugin')
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isPro = nodeEnv === 'production';
@@ -42,24 +43,31 @@ console.log("当前运行环境：", isPro
 
 if (isPro) {
     devtool = 'source-map';
-    plugins.push(new webpack.optimize.UglifyJsPlugin({
-        //最紧凑的输出
-        beautify: false,
-        //删除所有的注释
-        comments: false,
-        //并行
-        parallel: true,
-        compress: {
-            // 在UglifyJs删除没有用到的代码时不输出警告
-            warnings: false,
-            //删除所有的 `console` 语句
-            drop_console: true
-        }
-    }), new webpack.DefinePlugin({
-        'process.env': {
-            'NODE_ENV': JSON.stringify(nodeEnv)
-        }
-    }))
+    plugins.push(
+        new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            uglifyOptions: {
+                ie8: false,
+                warnings: false,
+                compress: {
+                    // 在UglifyJs删除没有用到的代码时不输出警告
+                    warnings: false,
+                    //删除所有的 `console` 语句
+                    drop_console: true
+                },
+                output: {
+                    comments: false,
+                    beautify: false,
+                },
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify(nodeEnv)
+            }
+        })
+    )
 } else {
     devtool = 'inline-source-map';
     plugins.push(new webpack.DefinePlugin({
