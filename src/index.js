@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './store';
 import App from './routes/index';
-import FastClick from 'fastclick';
+// import FastClick from 'fastclick';
 import './assets/style/index.css';
 import 'lodash'
 
 // 解决移动端300毫秒延迟
-FastClick.attach(document.body);
+// FastClick.attach(document.body);
 
 const store = configureStore();
 

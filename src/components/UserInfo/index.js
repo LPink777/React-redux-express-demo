@@ -4,11 +4,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './index.css';
 
 const style = {
-    height: "80%",
     width: "80%",
     padding: 20,
     display: 'inline-block',
-    background: "orange",
 };
 
 class UserInfo extends Component{

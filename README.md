@@ -14,3 +14,8 @@
 > 项目打包
 * npm run build-dev(development环境)
 * npm run build-pro(production环境)
+
+> 封装一个form组件的心路历程（太难了。。。。。。）
+* 确定业务功能
+* 写一个form组件，返回this.props.children
+* clone childrens
