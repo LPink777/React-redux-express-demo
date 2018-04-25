@@ -14,9 +14,9 @@ class Home extends Component {
                     name="userForm"
                     action="http://localhost:8080"
                 >
-                    <div>
-                        <h1>111</h1>
-                    </div>
+                    <input type="button" value="click"/>
+                    <input type="button" value="docuble"/>
+                    <input type="submit" value="submit" />
                 </Form>
             </div>
         );
