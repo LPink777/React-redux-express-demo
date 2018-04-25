@@ -8,7 +8,7 @@ export const isFormMerber = element => formMerberType.some((type) => {
     } else if (type === element.type) {
         return true;
     }
-    return false;
+    return false; 
 })
 
 
