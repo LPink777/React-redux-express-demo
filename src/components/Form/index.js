@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 class Form extends Component {
     componentWillMount() {
-        // this.props.onInitial();
+        this.props.onInitial();
     }
 
     render() {
