@@ -7,6 +7,6 @@ export const formMerberType = [
     'select',
 ];
 
-export const formSubmitName = 'name';
+export const formSubmitName = 'submit';
 
 export const ONFORMUPDATEPROPS = 'onFormUpdateProps';

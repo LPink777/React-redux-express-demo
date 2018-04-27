@@ -7,11 +7,11 @@ export const onFormUpdateProps = createAction(ONFORMUPDATEPROPS);
 export const isFormMerber = element => formMerberType.some((type) => {
     const elementType = element.type;
     if (elementType === 'function') {
-        return true;        
+        return true;
     } else if (type === elementType) {
         return true;
     }
-    return false; 
+    return false;
 })
 
 export const isSubmitForm = (ele) => {
@@ -21,13 +21,23 @@ export const isSubmitForm = (ele) => {
     return false
 }
 
+export const onFormSubmit = props => (dispatch, getState) => {
+    console.log(props)
+}
+
 export const onFormChildrenSubscribe = (toprops, props = toprops) => dispatch => (
     React.Children.map(props.children, (child) => {
         if (isFormMerber(child)) {
             const formName = props.name;
             return React.cloneElement(child, { formName }) 
         } else if(isSubmitForm(child)) {
-            console.log(111)
+            return React.cloneElement(child, {
+                onClick: () => dispatch(onFormSubmit(toprops))
+            });
+        } else if(React.isValidElement(child)) {
+            return React.cloneElement(child, {
+                child: dispatch(onFormChildrenSubscribe(toprops, child.props))
+            })
         }
         return child;
     })

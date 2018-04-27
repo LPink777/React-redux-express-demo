@@ -14,7 +14,6 @@ class Home extends Component {
                     name="userForm"
                     action="http://localhost:8080"
                 >
-                    <input type="submit" value="submit" />
                     <input type="text" placeholder="please"/>
                     <button type="submit">提交</button>
                 </Form>
