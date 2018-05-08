@@ -48,7 +48,7 @@ class Register extends Component {
                         message: res.message,
                     },()=>{
                         setTimeout(() => {
-                            window.location.href = '/login';
+                            window.location.href = '/userInfo';
                         }, 1000);
                     });
                 }else{

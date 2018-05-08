@@ -6,7 +6,7 @@ const common = require('../lib/common');
 const db = mysql.createPool({host: 'localhost', user: 'root', password: 'root', database: 'store'})
 
 router.get('/', function (req, res) {
-    res.clearCookie('userId');
+    res.clearCookie('username');
     res.status(200).send({code:0,message:'success'});
 });
 

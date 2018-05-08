@@ -6,12 +6,12 @@ const loginReducer = handleActions({
     LOGIN: (state, { payload }) => {
         return {
             loginState: 1,
-            userId: payload.userId,
+            userName: payload.username,
         }
     }    ,
-    LOGOUT: (state,action) => ({
+    LOGOUT: (state, { payload } ) => ({
         loginState: 0,
-        userId: '',
+        userName: undefined,
     })
 },LoginInitState)
 

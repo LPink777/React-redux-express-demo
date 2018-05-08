@@ -25,6 +25,12 @@ router.post('/', function (req, res) {
                     if (err) {
                         throw err
                     } else {
+                        res.cookie('username', username, {
+                            maxAge: 1000*60*30,
+                            path: '/',
+                            domain: 'localhost',
+                        })
+                        console.log(data)
                         res.status(200).send({code:1,message:'注册成功！'}).end()
                     }
                 })
