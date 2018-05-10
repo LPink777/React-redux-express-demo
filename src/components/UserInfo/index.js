@@ -4,6 +4,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
+import { userInfo } from '../../axios/userLogin';
+import Snackbar from 'material-ui/Snackbar';
 import './index.css';
 
 const style = {
@@ -20,6 +22,8 @@ class UserInfo extends Component{
             name: '',
             age: '',
             signature: '',
+            open: false,
+            message: '',
         }
     }
 
@@ -42,14 +46,37 @@ class UserInfo extends Component{
     submit = () => {
         const { sex, name, age, signature } = this.state;
         const data = { sex, name, age, signature };
-        console.log(this)
-        this.props.history.push('/')
+        console.log(this.props)
+        const { setUserInfo } = this.props;
+        userInfo(data).then(res => {
+            if (res.code === 1) {
+                this.setState({
+                    open: true,
+                    message: res.message,
+                },()=>{
+                    setUserInfo(data)
+                    setTimeout(() => {
+                        this.props.history.push('/')
+                    }, 1000);
+                });
+            }else{
+                this.setState({
+                    open: true,
+                    message: res.message,
+                    username:'',
+                    password:'',
+                });
+            }
+        })
     }
 
     render(){
         return (
             <div className='user'>
                 <Paper style={style} zDepth={1} rounded={false} >
+                    <div className="row userHeader">
+                        <span>请填写您的个人资料</span>
+                    </div>
                     <div className="row">
                         <div className="col-12">
                             <TextField
@@ -77,6 +104,7 @@ class UserInfo extends Component{
                                 hintText="请输入年龄"
                                 floatingLabelText="年龄"
                                 onChange={this.ageChange}
+                                type="Number"
                             />
                         </div>
                     </div>
@@ -98,6 +126,12 @@ class UserInfo extends Component{
                             />
                         </div>
                     </div>
+                    <Snackbar
+                        open={this.state.open}
+                        message={this.state.message}
+                        autoHideDuration={1000}
+                        style={{textAlign:'center',width:'45%'}}
+                    />
                 </Paper>
             </div>
         )

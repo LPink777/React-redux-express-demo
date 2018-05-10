@@ -10,3 +10,10 @@
 .submit {
     margin-top: 20px;
 }
+
+.userHeader {
+    margin-left: 0px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(101, 182, 80);
+}

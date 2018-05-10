@@ -15,6 +15,7 @@ const indexRouter = require('./routes/index');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 const logoutRouter = require('./routes/logout');
+const userInfoRouter = require('./routes/userInfo');
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080")
@@ -56,6 +57,7 @@ app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
+app.use('/userinfo', userInfoRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

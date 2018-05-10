@@ -6,7 +6,6 @@ const common = require('../lib/common');
 const db = mysql.createPool({host: 'localhost', user: 'root', password: 'root', database: 'store'})
 
 router.post('/', function (req, res) {
-    console.log(req.body)
     var username = req.body.username;
     var password = common.md5(req.body.password);
     db.query(`SELECT * FROM login_table`, (err, data) => {

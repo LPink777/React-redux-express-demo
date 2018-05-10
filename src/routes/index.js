@@ -7,7 +7,7 @@ import asyncComponent from '@/utils/asyncComponent';
 
 const Login = asyncComponent(() => require("@/containers/loginContainer/index"));
 const Register = asyncComponent(() => require("@/components/Register/index"));
-const UserInfo = asyncComponent(() => require("@/components/UserInfo/index"));
+const UserInfo = asyncComponent(() => require("@/containers/userInfoContainer/index"));
 
 class App extends Component {
     render() {
