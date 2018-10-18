@@ -1,7 +1,7 @@
 ## React-redux-Express-demo
 
 > 启动项目
-* git clone https://github.com/LPink777/Grocery-store.git
+* git clone https://github.com/LPink777/react-redux-express-demo.git
 * cd react-redux-express-demo && npm install
 * npm start
 * 浏览器打开http://localhost:8080
