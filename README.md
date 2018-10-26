@@ -1,5 +1,7 @@
 ## React-redux-Express-demo
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/LPink777/React-redux-express-demo.svg)](https://greenkeeper.io/)
+
 > 启动项目
 * git clone https://github.com/LPink777/react-redux-express-demo.git
 * cd react-redux-express-demo && npm install
